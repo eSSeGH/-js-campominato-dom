@@ -1,0 +1,78 @@
+* {
+    padding: 0;
+    margin: 0 ;
+    box-sizing: border-box;
+}
+
+img,
+figure {
+    max-width: 100%;
+}
+
+/* CELLE */
+
+.cell {
+    aspect-ratio: 1 !important; 
+    border: 1px solid white;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell:hover {
+    box-shadow: 0px 0px 35px inset yellow;
+    background-color: red ;
+    
+}
+
+.cell:active {
+    box-shadow: 0px 0px 35px inset red;
+    background-color: yellow;
+}
+
+
+/* LEVEL BAR */
+
+.logo {
+    max-height: 80px;
+}
+
+.body .level-bar {
+    font-family: sans-serif;
+    font-weight: 700;
+    height: 90px;
+    background-color: cornflowerblue;
+}
+
+.level-bar :last-child {
+    flex-basis: 10%;
+}
+
+/* PLAY BUTTON */
+
+.level-bar .level-bar-btn {
+    font-family: sans-serif;
+    font-weight: 700;
+    height: 60px;
+}
+
+.level-bar-btn:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px white ;
+}
+
+/* GAME SPACE */
+
+.game-space {
+    background-color: black;
+}
+
+.body {
+    background-color: black;
+}
+
+.grid {
+    max-width: 800px;
+}
+
