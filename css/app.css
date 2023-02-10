@@ -61,6 +61,18 @@ figure {
     box-shadow: 0 0 10px white ;
 }
 
+/* SCORE */
+
+.score {
+    height: 60px;
+    line-height: 60px;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: sans-serif;
+    background-color: chartreuse;
+    
+}
+
 /* GAME SPACE */
 
 .game-space {

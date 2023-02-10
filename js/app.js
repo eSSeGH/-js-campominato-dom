@@ -6,7 +6,8 @@ const gridEl = document.querySelector(".grid")
 
 let bombArray = []
 
-let score = 0 
+let scoreEl = document.querySelector(".score")
+let score = 0
 
 btnPlay.addEventListener("click", startGame)
 
@@ -42,7 +43,9 @@ function randMinMax(min, max) {
 
 // RESET GAME FUNCTION
 function resetGame() {
+    scoreEl.style.backgroundColor = "chartreuse"
     score = 0
+    scoreEl.innerHTML = "SCORE"
     gridEl.innerHTML = ""
 }
 
@@ -115,11 +118,13 @@ function onClick() {
         console.log("bombArray include num")
         clickedCell.style.backgroundColor = "red"
         clickedCell.innerHTML = "<i class='fa-solid fa-bomb'></i>"
-        alert("YOU LOSE! YOU STEPPED ON A BOMB!")
+        scoreEl.style.backgroundColor = "red"
+        scoreEl.innerHTML = "YOU LOSE"
     } else {
         console.log("bombArray non include num")
         clickedCell.style.backgroundColor = "lightblue"
-        score++
+        score += 1
+        scoreEl.innerHTML = score
     }
 
     clickedCell.removeEventListener("click", onClick)
