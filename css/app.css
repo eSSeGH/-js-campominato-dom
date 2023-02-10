@@ -21,14 +21,14 @@ figure {
 }
 
 .cell:hover {
-    box-shadow: 0px 0px 35px inset yellow;
-    background-color: red ;
+    box-shadow: 0px 0px 35px inset lightblue;
+    background-color: blue;
     
 }
 
 .cell:active {
-    box-shadow: 0px 0px 35px inset red;
-    background-color: yellow;
+    box-shadow: 0px 0px 35px inset blue;
+    background-color: lightblue;
 }
 
 

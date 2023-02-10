@@ -8,9 +8,35 @@ btnPlay.addEventListener("click", startGame)
 
 
 
-
-
 // FUNZIONI
+
+// crea un array da 1 a sidegrid, con numeri random, non doppi
+
+function bombGen(bombNum) {
+
+    let numArray = []
+
+    while (numArray < bombNum.length) {
+
+        let num = randMinMax(1, bombNum)
+        console.log("il numero ciclato è", num)
+        console.log("l'array di numeri è", numArray)
+
+        if (numArray.includes(num)){
+            continue
+        } else {
+            numArray.push(num)
+            console.log("l'array di numeri è stato incrementato", numArray)
+        } 
+    }
+}
+
+function randMinMax(min, max) {
+
+    variable = Math.floor(Math.random() * (max - min + 1)) + min
+
+    return variable
+}
 
 
 // RESET GAME FUNCTION
@@ -44,6 +70,8 @@ function startGame() {
 
     createGrid(sideGrid)
 
+    bombGen(sideGrid)
+
     btnPlay.innerHTML = "RESTART"
 }
 
@@ -54,8 +82,7 @@ function createGrid(sideOfGrid) {
 
     for (i=0; i < cellNum; i++) {
 
-        let num = i + 1
-        console.log(i + 1)
+        num = i + 1
 
         const cellEl = document.createElement("div")
         console.dir
@@ -68,7 +95,6 @@ function createGrid(sideOfGrid) {
         gridEl.append(cellEl)
 
         cellEl.addEventListener("click", onClick)
-        console.log(`click ${num}`)
     }
 }
 
@@ -77,7 +103,10 @@ function onClick() {
 
     const clickedCell = this
 
-    clickedCell.style.backgroundColor = "rgb(255, 140, 0)"
+    num = clickedCell.innerHTML
+    console.log(num)
+
+    clickedCell.style.backgroundColor = "lightblue"
 
     clickedCell.removeEventListener("click", onClick)
 }
