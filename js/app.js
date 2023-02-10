@@ -4,6 +4,10 @@ const btnPlay = document.getElementById("btn-play")
 
 const gridEl = document.querySelector(".grid")
 
+let bombArray = []
+
+let score = 0 
+
 btnPlay.addEventListener("click", startGame)
 
 
@@ -13,8 +17,6 @@ btnPlay.addEventListener("click", startGame)
 // crea un array da 1 a sidegrid, con numeri random, non doppi
 
 function bombGen(bombNum) {
-
-    let bombArray = []
 
     while (bombArray.length < bombNum) {
 
@@ -40,10 +42,8 @@ function randMinMax(min, max) {
 
 // RESET GAME FUNCTION
 function resetGame() {
-    // azzerare il punteggio
-    // svuotare la griglia
+    score = 0
     gridEl.innerHTML = ""
-    // eliminare eventuali messaggi di game over
 }
 
 // START GAME FUNCTION
@@ -71,8 +71,8 @@ function startGame() {
 
     let bombNum = parseInt(sideGrid)
 
-    console.log("la variabile di bombGen:", bombNum)
     bombGen(bombNum)
+    console.log(bombArray)
 
     btnPlay.innerHTML = "RESTART"
 }
@@ -103,12 +103,23 @@ function createGrid(sideOfGrid) {
 // CLICK CELL FUNCTION
 function onClick() {
 
-    const clickedCell = this
+    console.log(bombArray)
 
-    num = clickedCell.innerHTML
+    const clickedCell = this
+    console.dir(clickedCell)
+
+    num = parseInt(clickedCell.innerHTML)
     console.log(num)
 
-    clickedCell.style.backgroundColor = "lightblue"
+    if (bombArray.includes(num)) {
+        console.log("bombArray include num")
+        clickedCell.classList.add("bomb")
+        alert("YOU LOSE! YOU STEPPED ON A BOMB!")
+    } else {
+        console.log("bombArray non include num")
+        clickedCell.style.backgroundColor = "lightblue"
+        score++
+    }
 
     clickedCell.removeEventListener("click", onClick)
 }
