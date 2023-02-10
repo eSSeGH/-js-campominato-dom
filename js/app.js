@@ -13,25 +13,19 @@ btnPlay.addEventListener("click", startGame)
 // crea un array da 1 a sidegrid, con numeri random, non doppi
 
 function bombGen(bombNum) {
-    console.log("bombGenFunc toggled")
 
     let numArray = []
-    console.log("numArray è stato creato")
 
     while (numArray.length < bombNum) {
 
-        console.log("ciclo while partito")
-
         let range = bombNum**2
         let num = randMinMax(1, range)
-        console.log("il numero ciclato è", num)
-        console.log("l'array di numeri è", numArray)
+
 
         if (numArray.includes(num)){
             continue
         } else {
             numArray.push(num)
-            console.log("l'array di numeri è stato incrementato", numArray)
         } 
     }
 }
