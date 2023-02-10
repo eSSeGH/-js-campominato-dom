@@ -14,18 +14,18 @@ btnPlay.addEventListener("click", startGame)
 
 function bombGen(bombNum) {
 
-    let numArray = []
+    let bombArray = []
 
-    while (numArray.length < bombNum) {
+    while (bombArray.length < bombNum) {
 
         let range = bombNum**2
-        let num = randMinMax(1, range)
+        let bomb = randMinMax(1, range)
 
 
-        if (numArray.includes(num)){
+        if (bombArray.includes(bomb)){
             continue
         } else {
-            numArray.push(num)
+            bombArray.push(bomb)
         } 
     }
 }
