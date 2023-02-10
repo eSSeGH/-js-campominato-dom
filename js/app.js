@@ -113,7 +113,8 @@ function onClick() {
 
     if (bombArray.includes(num)) {
         console.log("bombArray include num")
-        clickedCell.classList.add("bomb")
+        clickedCell.style.backgroundColor = "red"
+        clickedCell.innerHTML = "<i class='fa-solid fa-bomb'></i>"
         alert("YOU LOSE! YOU STEPPED ON A BOMB!")
     } else {
         console.log("bombArray non include num")
