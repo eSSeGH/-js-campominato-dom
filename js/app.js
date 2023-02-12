@@ -7,6 +7,10 @@ const gridEl = document.querySelector(".grid")
 
 let bombArray = []
 let warningArray = []
+let edgedNorthCells = []
+let edgedEastCells = []
+let edgedSouthCells = []
+let edgedWestCells = []
 
 let scoreEl = document.querySelector(".score")
 let score = 0
@@ -57,6 +61,7 @@ function startGame() {
             cellEl.classList.add(`cell${num}`)
             cellEl.style.width = `calc(100%/ ${sideOfGrid})`
             cellEl.style.height = `calc(100%/ ${sideOfGrid})`
+            cellEl.style.color = "black"
             cellEl.innerHTML = num
 
             gridEl.append(cellEl)
@@ -73,12 +78,43 @@ function startGame() {
 
     // INVOKING BOMB GEN FUNC
     bombGen(bombNum)
+    console.log("le bombe sono:", bombArray)
 
     // WARNINGS GEN FUNC
     function surroundWarningGen(bombArray) {
 
         console.log("surroundwarningGen")
 
+        // PUSHING CELLS INTO EDGED CELLS ARRAYS
+        for (i = 0; i < sideGrid; i++) {
+
+            edgedCell = i + 1
+            edgedNorthCells.push(edgedCell)
+        }
+        console.log(edgedNorthCells)
+        
+        for (i = 0; i < sideGrid; i++) {
+
+            edgedCell = (i + 1)*sideGrid
+            edgedEastCells.push(edgedCell)
+        }
+        console.log(edgedEastCells)
+
+        for (i = 0; i < sideGrid; i++) {
+
+            edgedCell = ((sideGrid**2) - sideGrid) + (i + 1)
+            edgedSouthCells.push(edgedCell)
+        }
+        console.log(edgedSouthCells)
+
+        for (i = 0; i < sideGrid; i++) {
+
+            edgedCell = i*sideGrid + 1
+            edgedWestCells.push(edgedCell)
+        }
+        console.log(edgedWestCells)
+
+        // GENERATING WARNING CELLS NUMBER
         for (i = 0; i < bombArray.length; i++) {
             console.log(`surroundwarningGen cicle nr ${i}` )
 
@@ -92,15 +128,44 @@ function startGame() {
             let cellNorthWest = parseInt(bombArray[i] - (sideGrid + 1) )
 
             console.log(cellNorth)
+
+            // CHECK IF WARNING GENERATED CELL IS out of EDGES
+
+            if (edgedNorthCells.includes(bombArray[i]) === false) {
+                warningArray.push(cellNorth)
+            }
+
+            if (edgedNorthCells.includes(bombArray[i]) === false &&
+                edgedEastCells.includes(bombArray[i]) === false) {
+                warningArray.push(cellNorthEast)
+            }
             
-            warningArray.push(cellNorth)
-            warningArray.push(cellNorthEast)
-            warningArray.push(cellEast)
-            warningArray.push(cellSouthEast)
-            warningArray.push(cellSouth)
-            warningArray.push(cellSouthWest)
-            warningArray.push(cellWest)
-            warningArray.push(cellNorthWest)
+            if (edgedEastCells.includes(bombArray[i]) === false) {
+                warningArray.push(cellEast)
+            }
+            
+            if (edgedSouthCells.includes(bombArray[i]) === false &&
+                edgedEastCells.includes(bombArray[i]) === false) {
+                warningArray.push(cellSouthEast)
+            }
+
+            if (edgedSouthCells.includes(bombArray[i]) === false) {
+                warningArray.push(cellSouth)
+            }
+            
+            if (edgedSouthCells.includes(bombArray[i]) === false &&
+                edgedWestCells.includes(bombArray[i]) === false) {
+                warningArray.push(cellSouthWest)
+            }
+        
+            if (edgedWestCells.includes(bombArray[i]) === false) {
+                warningArray.push(cellWest)
+            }
+            
+            if (edgedNorthCells.includes(bombArray[i]) === false &&
+                edgedWestCells.includes(bombArray[i]) === false) {
+                warningArray.push(cellNorthWest)
+            }
 
             console.log(warningArray)          
         }
