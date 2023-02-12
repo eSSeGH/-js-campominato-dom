@@ -49,7 +49,7 @@ function startGame() {
     }
 
     // GRID WINDOW DIMENSIONS SET 
-    setWindowGridWidth()
+    setWindowGridWidth(sideGrid)
 
     // DECLARING CONTROLLER VAR
     const controller = new AbortController
@@ -76,7 +76,6 @@ function startGame() {
 
             cellEl.addEventListener("click", onClick, {signal: controller.signal})
         }
-
     }
 
     // INVOKING CREATE GRID FUNC
@@ -94,25 +93,18 @@ function startGame() {
 
         // PUSHING CELLS INTO EDGED CELLS ARRAYS
         for (i = 0; i < sideGrid; i++) {
-
             edgedCell = i + 1
             edgedNorthCells.push(edgedCell)
-        }
-        
+        }       
         for (i = 0; i < sideGrid; i++) {
-
             edgedCell = (i + 1)*sideGrid
             edgedEastCells.push(edgedCell)
         }
-
         for (i = 0; i < sideGrid; i++) {
-
             edgedCell = ((sideGrid**2) - sideGrid) + (i + 1)
             edgedSouthCells.push(edgedCell)
         }
-
         for (i = 0; i < sideGrid; i++) {
-
             edgedCell = i*sideGrid + 1
             edgedWestCells.push(edgedCell)
         }
@@ -134,34 +126,27 @@ function startGame() {
             if (edgedNorthCells.includes(bombArray[i]) === false) {
                 warningArray.push(cellNorth)
             }
-
             if (edgedNorthCells.includes(bombArray[i]) === false &&
                 edgedEastCells.includes(bombArray[i]) === false) {
                 warningArray.push(cellNorthEast)
             }
-            
             if (edgedEastCells.includes(bombArray[i]) === false) {
                 warningArray.push(cellEast)
             }
-            
             if (edgedSouthCells.includes(bombArray[i]) === false &&
                 edgedEastCells.includes(bombArray[i]) === false) {
                 warningArray.push(cellSouthEast)
             }
-
             if (edgedSouthCells.includes(bombArray[i]) === false) {
                 warningArray.push(cellSouth)
-            }
-            
+            }           
             if (edgedSouthCells.includes(bombArray[i]) === false &&
                 edgedWestCells.includes(bombArray[i]) === false) {
                 warningArray.push(cellSouthWest)
-            }
-        
+            }       
             if (edgedWestCells.includes(bombArray[i]) === false) {
                 warningArray.push(cellWest)
-            }
-            
+            }           
             if (edgedNorthCells.includes(bombArray[i]) === false &&
                 edgedWestCells.includes(bombArray[i]) === false) {
                 warningArray.push(cellNorthWest)
@@ -316,7 +301,7 @@ function win() {
 }
 
 // WINDOW GRID WIDTH SET
-function setWindowGridWidth() {
+function setWindowGridWidth(sideGrid) {
 
     if (sideGrid === 10) {
         gridEl.style.maxWidth = "600px"
