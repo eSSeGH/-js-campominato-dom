@@ -84,6 +84,7 @@ function startGame() {
     // INVOKING BOMB GEN FUNC
     bombGen(bombNum)
     console.log("le bombe sono:", bombArray)
+    // Lascio il seguente console.log per facilitare i test 
 
     // WARNINGS GEN FUNC
     function surroundWarningGen(bombArray) {
