@@ -19,6 +19,11 @@ let highScore = 0
 
 btnPlay.addEventListener("click", startGame)
 
+const winCard = document.querySelector(".you-won")
+const winCardScore = document.getElementById("score")
+const winCardLevel = document.getElementById("level")
+
+
 // FUNCTIONS
 
 // START GAME FUNCTION
@@ -187,47 +192,52 @@ function startGame() {
 
             clickedCell.style.color = "yellow"
             clickedCell.innerHTML = "1"
-
+            addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 2) {
 
             clickedCell.style.color = "orangered"
             clickedCell.innerHTML = "2"
-
+            addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 3) {
 
             clickedCell.style.color = "red"
             clickedCell.innerHTML = "3"
-
+            addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 4) {
 
             clickedCell.style.color = "purple"
             clickedCell.innerHTML = "4"
-
+            addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 5) {
 
             clickedCell.style.color = "purple"
             clickedCell.innerHTML = "5"
-
+            addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 6) {
 
             clickedCell.style.color = "purple"
             clickedCell.innerHTML = "6"
-
+            addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 7) {
 
             clickedCell.style.color = "purple"
             clickedCell.innerHTML = "7"
-
+            addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 8) {
 
             clickedCell.style.color = "purple"
             clickedCell.innerHTML = "8"
-
+            addScore()
         } else {
             clickedCell.style.backgroundColor = "lightblue"
             clickedCell.style.color = "lightblue"
-            score += 1
-            scoreEl.innerHTML = score
+            addScore()
+        }
+
+        let winScore = sideGrid**2 - sideGrid
+
+        if (score === winScore) {
+            win()
         }
 
         clickedCell.removeEventListener("click", onClick)
@@ -258,6 +268,11 @@ function randMinMax(min, max) {
     return variable
 }
 
+function addScore() {
+    score += 1
+    scoreEl.innerHTML = score
+}
+
 
 // RESET GAME FUNCTION
 function resetGame() {
@@ -271,6 +286,8 @@ function resetGame() {
     edgedEastCells = []
     edgedSouthCells = []
     edgedWestCells = []
+    winCard.style.display= "none"
+    winCardScore.innerHTML += ""
 }
 
 // COUNT IN ARRAY FUNCTION
@@ -279,9 +296,17 @@ function countInArray(array, object) {
     let count = 0;
 
     for (var i = 0; i < array.length; i++) {
+
         if (array[i] === object) {
             count++;
         }
     }
     return count;
+}
+
+// WINNING FUNCTION
+
+function win() {
+    winCard.style.display= "block"
+    winCardScore.innerHTML += `Il tuo punteggio: ${score}`
 }

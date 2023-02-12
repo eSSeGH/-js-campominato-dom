@@ -42,6 +42,7 @@ figure {
     font-weight: 700;
     height: 90px;
     background-color: cornflowerblue;
+    box-shadow: 0 0 15px inset rgb(18, 91, 228);
 }
 
 .command-bar :last-child {
@@ -91,3 +92,36 @@ figure {
     max-width: 800px;
 }
 
+/* WIN CARD */
+
+.game-space {
+    position: relative;
+}
+
+.you-won {
+    width: 70vh;
+    border: 2px white;
+    border-radius: 50px;
+    background-color: cornflowerblue;
+    box-shadow: 0 0 30px inset rgb(18, 91, 228);
+    font-size: 80px;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: none;
+}
+
+.you-won h1 {
+    font-size: 48px;
+}
+
+.you-won h3 {
+    font-size: 30px;
+}
+
+.you-won span {
+    font-size: 18px;
+}
