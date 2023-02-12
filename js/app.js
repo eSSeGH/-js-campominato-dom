@@ -48,6 +48,9 @@ function startGame() {
         }
     }
 
+    // GRID WINDOW DIMENSIONS SET 
+    setWindowGridWidth()
+
     // DECLARING CONTROLLER VAR
     const controller = new AbortController
 
@@ -310,4 +313,32 @@ function countInArray(array, object) {
 function win() {
     winCard.style.display= "block"
     winCardScore.innerHTML += `Il tuo punteggio: ${score}`
+}
+
+// WINDOW GRID WIDTH SET
+function setWindowGridWidth() {
+
+    if (sideGrid === 10) {
+        gridEl.style.maxWidth = "600px"
+    } else if (sideGrid === 11)  {
+        gridEl.style.maxWidth = "660px"
+    } else if (sideGrid === 12) {
+        gridEl.style.maxWidth = "720px"
+    } else if (sideGrid === 13)  {
+        gridEl.style.maxWidth = "780px"
+    } else if (sideGrid === 14) {
+        gridEl.style.maxWidth = "840px"
+    } else if (sideGrid === 15) {
+        gridEl.style.maxWidth = "900px"
+    } else if (sideGrid === 16) {
+        gridEl.style.maxWidth = "970px"
+    } else if (sideGrid === 17) {
+        gridEl.style.maxWidth = "1070px"
+    } else if (sideGrid === 18) {
+        gridEl.style.maxWidth = "1180px"
+    } else if (sideGrid === 19) {
+        gridEl.style.maxWidth = "1300px"
+    } else {
+        gridEl.style.maxWidth = "1430px"
+    }
 }
