@@ -225,6 +225,7 @@ function startGame() {
 
         } else {
             clickedCell.style.backgroundColor = "lightblue"
+            clickedCell.style.color = "lightblue"
             score += 1
             scoreEl.innerHTML = score
         }
@@ -264,6 +265,12 @@ function resetGame() {
     score = 0
     scoreEl.innerHTML = "SCORE"
     gridEl.innerHTML = ""
+    bombArray = []
+    warningArray = []
+    edgedNorthCells = []
+    edgedEastCells = []
+    edgedSouthCells = []
+    edgedWestCells = []
 }
 
 // COUNT IN ARRAY FUNCTION
