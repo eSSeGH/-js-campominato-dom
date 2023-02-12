@@ -83,40 +83,33 @@ function startGame() {
     // WARNINGS GEN FUNC
     function surroundWarningGen(bombArray) {
 
-        console.log("surroundwarningGen")
-
         // PUSHING CELLS INTO EDGED CELLS ARRAYS
         for (i = 0; i < sideGrid; i++) {
 
             edgedCell = i + 1
             edgedNorthCells.push(edgedCell)
         }
-        console.log(edgedNorthCells)
         
         for (i = 0; i < sideGrid; i++) {
 
             edgedCell = (i + 1)*sideGrid
             edgedEastCells.push(edgedCell)
         }
-        console.log(edgedEastCells)
 
         for (i = 0; i < sideGrid; i++) {
 
             edgedCell = ((sideGrid**2) - sideGrid) + (i + 1)
             edgedSouthCells.push(edgedCell)
         }
-        console.log(edgedSouthCells)
 
         for (i = 0; i < sideGrid; i++) {
 
             edgedCell = i*sideGrid + 1
             edgedWestCells.push(edgedCell)
         }
-        console.log(edgedWestCells)
 
         // GENERATING WARNING CELLS NUMBER
         for (i = 0; i < bombArray.length; i++) {
-            console.log(`surroundwarningGen cicle nr ${i}` )
 
             let cellNorth = parseInt(bombArray[i] - sideGrid )
             let cellNorthEast = parseInt(bombArray[i] - (sideGrid - 1) )
@@ -126,8 +119,6 @@ function startGame() {
             let cellSouthWest = parseInt(bombArray[i] + (sideGrid - 1) )
             let cellWest = parseInt(bombArray[i] - 1 )
             let cellNorthWest = parseInt(bombArray[i] - (sideGrid + 1) )
-
-            console.log(cellNorth)
 
             // CHECK IF WARNING GENERATED CELL IS out of EDGES
 
@@ -165,9 +156,7 @@ function startGame() {
             if (edgedNorthCells.includes(bombArray[i]) === false &&
                 edgedWestCells.includes(bombArray[i]) === false) {
                 warningArray.push(cellNorthWest)
-            }
-
-            console.log(warningArray)          
+            }      
         }
     }
 
