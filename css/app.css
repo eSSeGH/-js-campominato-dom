@@ -24,7 +24,6 @@ figure {
 .cell:hover {
     box-shadow: 0px 0px 35px inset lightblue;
     background-color: blue;
-    
 }
 
 .cell:active {
