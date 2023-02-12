@@ -37,40 +37,44 @@ figure {
     max-height: 80px;
 }
 
-.body .level-bar {
+.body .command-bar {
     font-family: sans-serif;
     font-weight: 700;
     height: 90px;
     background-color: cornflowerblue;
 }
 
-.level-bar :last-child {
+.command-bar :last-child {
     flex-basis: 10%;
 }
 
-/* PLAY BUTTON */
+/* BUTTONS & BADGES */
 
-.level-bar .level-bar-btn {
-    font-family: sans-serif;
-    font-weight: 700;
-    height: 60px;
-}
-
-.level-bar-btn:hover {
-    transform: scale(1.2);
-    box-shadow: 0 0 10px white ;
-}
-
-/* SCORE */
-
-.score {
+.command-bar .my-badge {
     height: 60px;
     line-height: 60px;
     font-size: 30px;
     font-weight: 700;
     font-family: sans-serif;
+    border-radius: 10px;
+}
+
+/* PLAY BUTTON */
+
+.command-bar-btn {
+    line-height: 0 !important;
+}
+
+.command-bar-btn:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px white;
+}
+
+/* SCORE */
+
+.score {
     background-color: chartreuse;
-    
+    border-radius: 10px;
 }
 
 /* GAME SPACE */
