@@ -66,7 +66,6 @@ function startGame() {
             const cellEl = document.createElement("div")
 
             cellEl.className = "cell"
-            cellEl.classList.add(`cell${num}`)
             cellEl.style.width = `calc(100%/ ${sideOfGrid})`
             cellEl.style.height = `calc(100%/ ${sideOfGrid})`
             cellEl.style.color = "black"
@@ -77,13 +76,23 @@ function startGame() {
             cellEl.addEventListener("click", onClick, {signal: controller.signal})
             const noContext = document.getElementById('noContextMenu');
 
+            // ADDING FLAG FEAT
             cellEl.addEventListener('contextmenu', (e) => {
                 e.preventDefault()
                 
                 let rightClickedCell = e.target
-                rightClickedCell.style.backgroundColor = "yellowgreen"
-                rightClickedCell.innerHTML = "<i class='fa-solid fa-flag'></i>"
-            });
+                
+
+                if (rightClickedCell.className == "cell") {
+                    rightClickedCell.classList.add("flagged")
+                    rightClickedCell.style.backgroundColor = "yellowgreen"
+                    rightClickedCell.innerHTML = "<i class='fa-solid fa-flag'></i>"
+                } else {
+                    rightClickedCell.parentElement.classList.remove("flagged")
+                    rightClickedCell.parentElement.style.backgroundColor = "black"
+                    rightClickedCell.parentElement.innerHTML = ""
+                }
+            })
         }
     }
 
