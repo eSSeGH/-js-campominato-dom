@@ -81,10 +81,10 @@ function startGame() {
     // INVOKING CREATE GRID FUNC
     createGrid(sideGrid)
 
-    let bombNum = parseInt(sideGrid)
+    let bombNum = parseInt(sideGrid*1.5)
 
     // INVOKING BOMB GEN FUNC
-    bombGen(bombNum)
+    bombGen(bombNum, sideGrid)
     console.log("le bombe sono:", bombArray)
     // Lascio il seguente console.log per facilitare i test 
 
@@ -165,6 +165,7 @@ function startGame() {
 
         num = parseInt(clickedCell.innerHTML)
 
+        // CHECK IF THE CELL IS WARNING, BOMB OR ELSE
         if (bombArray.includes(num)) {
             clickedCell.style.backgroundColor = "red"
             clickedCell.innerHTML = "<i class='fa-solid fa-bomb'></i>"
@@ -234,11 +235,11 @@ function startGame() {
 }
 
 // BOMB GEN FUNCTION
-function bombGen(bombNum) {
+function bombGen(bombNum, sideGrid) {
 
     while (bombArray.length < bombNum) {
 
-        let range = bombNum**2
+        let range = sideGrid**2
         let bomb = randMinMax(1, range)
 
         if (bombArray.includes(bomb)){
