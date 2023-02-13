@@ -86,11 +86,13 @@ function startGame() {
                 if (rightClickedCell.className == "cell") {
                     rightClickedCell.classList.add("flagged")
                     rightClickedCell.style.backgroundColor = "yellowgreen"
+                    rightClickedCell.style.boxShadow = "0 0 5px green"
                     rightClickedCell.innerHTML = "<i class='fa-solid fa-flag'></i>"
                 } else {
                     rightClickedCell.parentElement.classList.remove("flagged")
                     rightClickedCell.parentElement.style.backgroundColor = "black"
-                    rightClickedCell.parentElement.innerHTML = ""
+                    rightClickedCell.parentElement.style.boxShadow = "none"
+                    rightClickedCell.parentElement.innerHTML = num
                 }
             })
         }
@@ -200,41 +202,49 @@ function startGame() {
 
             clickedCell.style.color = "yellow"
             clickedCell.innerHTML = "1"
+            clickedCell.style.boxShadow = "0 0 10px inset yellow"
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 2) {
 
-            clickedCell.style.color = "orangered"
+            clickedCell.style.color = "orange"
             clickedCell.innerHTML = "2"
+            clickedCell.style.boxShadow = "0 0 12px inset orange"
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 3) {
 
             clickedCell.style.color = "red"
             clickedCell.innerHTML = "3"
+            clickedCell.style.boxShadow = "0 0 12px inset red"
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 4) {
 
             clickedCell.style.color = "purple"
             clickedCell.innerHTML = "4"
+            clickedCell.style.boxShadow = "0 0 15px inset purple"
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 5) {
 
             clickedCell.style.color = "purple"
             clickedCell.innerHTML = "5"
+            clickedCell.style.boxShadow = "0 0 15px inset purple"
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 6) {
 
             clickedCell.style.color = "purple"
             clickedCell.innerHTML = "6"
+            clickedCell.style.boxShadow = "0 0 15px inset purple"
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 7) {
 
             clickedCell.style.color = "purple"
             clickedCell.innerHTML = "7"
+            clickedCell.style.boxShadow = "0 0 15px inset purple"
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 8) {
 
             clickedCell.style.color = "purple"
             clickedCell.innerHTML = "8"
+            clickedCell.style.boxShadow = "0 0 15px inset purple"
             addScore()
         } else {
             clickedCell.style.backgroundColor = "lightblue"
@@ -260,6 +270,7 @@ function bombGen(bombNum, sideGrid) {
         let range = sideGrid**2
         let bomb = randMinMax(1, range)
 
+        // BOMB CHECK
         if (bombArray.includes(bomb)){
             continue
         } else {
@@ -323,26 +334,26 @@ function win() {
 function setWindowGridWidth(sideGrid) {
 
     if (sideGrid === 10) {
-        gridEl.style.maxWidth = "600px"
+        gridEl.style.maxWidth = "620px"
     } else if (sideGrid === 11)  {
-        gridEl.style.maxWidth = "660px"
+        gridEl.style.maxWidth = "680px"
     } else if (sideGrid === 12) {
-        gridEl.style.maxWidth = "720px"
+        gridEl.style.maxWidth = "740px"
     } else if (sideGrid === 13)  {
-        gridEl.style.maxWidth = "780px"
+        gridEl.style.maxWidth = "800px"
     } else if (sideGrid === 14) {
-        gridEl.style.maxWidth = "840px"
+        gridEl.style.maxWidth = "870px"
     } else if (sideGrid === 15) {
-        gridEl.style.maxWidth = "900px"
+        gridEl.style.maxWidth = "930px"
     } else if (sideGrid === 16) {
-        gridEl.style.maxWidth = "970px"
+        gridEl.style.maxWidth = "990px"
     } else if (sideGrid === 17) {
-        gridEl.style.maxWidth = "1070px"
+        gridEl.style.maxWidth = "1080px"
     } else if (sideGrid === 18) {
         gridEl.style.maxWidth = "1180px"
     } else if (sideGrid === 19) {
-        gridEl.style.maxWidth = "1300px"
+        gridEl.style.maxWidth = "1310px"
     } else {
-        gridEl.style.maxWidth = "1430px"
+        gridEl.style.maxWidth = "1440px"
     }
 }
