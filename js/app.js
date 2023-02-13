@@ -75,6 +75,15 @@ function startGame() {
             gridEl.append(cellEl)
 
             cellEl.addEventListener("click", onClick, {signal: controller.signal})
+            const noContext = document.getElementById('noContextMenu');
+
+            cellEl.addEventListener('contextmenu', (e) => {
+                e.preventDefault()
+                
+                let rightClickedCell = e.target
+                rightClickedCell.style.backgroundColor = "yellowgreen"
+                rightClickedCell.innerHTML = "<i class='fa-solid fa-flag'></i>"
+            });
         }
     }
 
@@ -224,7 +233,7 @@ function startGame() {
             addScore()
         }
 
-        let winScore = sideGrid**2 - sideGrid
+        let winScore = sideGrid**2 - sideGrid*1.5
 
         if (score === winScore) {
             win()
