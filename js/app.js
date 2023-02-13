@@ -316,7 +316,7 @@ function countInArray(array, object) {
 
 function win() {
     winCard.style.display= "block"
-    winCardScore.innerHTML += `Il tuo punteggio: ${score}`
+    winCardScore.innerHTML = `Il tuo punteggio: ${score}`
 }
 
 // WINDOW GRID WIDTH SET
