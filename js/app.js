@@ -94,7 +94,7 @@ function startGame() {
     // INVOKING CREATE GRID FUNC
     createGrid(sideGrid)
 
-    let bombNum = parseInt(sideGrid*1.5)
+    let bombNum = parseInt(sideGrid + (sideGrid - 10)*3)
 
     // INVOKING BOMB GEN FUNC
     bombGen(bombNum, sideGrid)
@@ -146,10 +146,8 @@ function startGame() {
             scoreEl.style.backgroundColor = "red"
             scoreEl.innerHTML = `YOU LOSE: SCORE(${score})`
         
-            if (score > highScore) {
-                highScore = parseInt(score)
-                highScoreEl.innerHTML = `HS: ${highScore}`
-            }
+            highScoreUpdate()
+
             controller.abort()
         
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 1) {
@@ -182,9 +180,10 @@ function startGame() {
         }
         
 
-        let winScore = sideGrid**2 - sideGrid*1.5
+        let winScore = sideGrid**2 - (sideGrid + (sideGrid - 10)*3)
 
         if (score === winScore) {
+            highScoreUpdate()
             win()
         }
 
@@ -342,4 +341,13 @@ function giveWarningCellStyle(num, color, clickedCell) {
     clickedCell.style.color = `${color}`
     clickedCell.innerHTML = `${num}`
     clickedCell.style.boxShadow = `0 0 15px inset ${color}`
+}
+
+// HIGHSCORE UPDATE
+
+function highScoreUpdate() {
+    if (score > highScore) {
+        highScore = parseInt(score)
+        highScoreEl.innerHTML = `HS: ${highScore}`
+    }
 }
