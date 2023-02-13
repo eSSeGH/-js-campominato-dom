@@ -68,12 +68,12 @@ function startGame() {
             cellEl.className = "cell"
             cellEl.style.width = `calc(100%/ ${sideOfGrid})`
             cellEl.style.height = `calc(100%/ ${sideOfGrid})`
-            cellEl.style.color = "black"
             cellEl.innerHTML = num
 
             gridEl.append(cellEl)
 
             cellEl.addEventListener("click", onClick, {signal: controller.signal})
+
             const noContext = document.getElementById('noContextMenu');
 
             // ADDING FLAG FEAT
@@ -82,17 +82,10 @@ function startGame() {
                 
                 let rightClickedCell = e.target
                 
-
                 if (rightClickedCell.className == "cell") {
                     rightClickedCell.classList.add("flagged")
-                    rightClickedCell.style.backgroundColor = "yellowgreen"
-                    rightClickedCell.style.boxShadow = "0 0 5px green"
-                    rightClickedCell.innerHTML = "<i class='fa-solid fa-flag'></i>"
                 } else {
-                    rightClickedCell.parentElement.classList.remove("flagged")
-                    rightClickedCell.parentElement.style.backgroundColor = "black"
-                    rightClickedCell.parentElement.style.boxShadow = "none"
-                    rightClickedCell.parentElement.innerHTML = num
+                    rightClickedCell.classList.remove("flagged")
                 }
             })
         }
@@ -129,49 +122,8 @@ function startGame() {
             edgedWestCells.push(edgedCell)
         }
 
-        // GENERATING WARNING CELLS NUMBER
-        for (i = 0; i < bombArray.length; i++) {
-
-            let cellNorth = parseInt(bombArray[i] - sideGrid )
-            let cellNorthEast = parseInt(bombArray[i] - (sideGrid - 1) )
-            let cellEast = parseInt(bombArray[i] + 1 )
-            let cellSouthEast = parseInt(bombArray[i] + (sideGrid + 1) )
-            let cellSouth = parseInt(bombArray[i] + sideGrid )
-            let cellSouthWest = parseInt(bombArray[i] + (sideGrid - 1) )
-            let cellWest = parseInt(bombArray[i] - 1 )
-            let cellNorthWest = parseInt(bombArray[i] - (sideGrid + 1) )
-
-            // CHECK IF WARNING GENERATED CELL IS out of EDGES
-
-            if (edgedNorthCells.includes(bombArray[i]) === false) {
-                warningArray.push(cellNorth)
-            }
-            if (edgedNorthCells.includes(bombArray[i]) === false &&
-                edgedEastCells.includes(bombArray[i]) === false) {
-                warningArray.push(cellNorthEast)
-            }
-            if (edgedEastCells.includes(bombArray[i]) === false) {
-                warningArray.push(cellEast)
-            }
-            if (edgedSouthCells.includes(bombArray[i]) === false &&
-                edgedEastCells.includes(bombArray[i]) === false) {
-                warningArray.push(cellSouthEast)
-            }
-            if (edgedSouthCells.includes(bombArray[i]) === false) {
-                warningArray.push(cellSouth)
-            }           
-            if (edgedSouthCells.includes(bombArray[i]) === false &&
-                edgedWestCells.includes(bombArray[i]) === false) {
-                warningArray.push(cellSouthWest)
-            }       
-            if (edgedWestCells.includes(bombArray[i]) === false) {
-                warningArray.push(cellWest)
-            }           
-            if (edgedNorthCells.includes(bombArray[i]) === false &&
-                edgedWestCells.includes(bombArray[i]) === false) {
-                warningArray.push(cellNorthWest)
-            }      
-        }
+        // GENERATING WARNING CELLS NUMBER SURROUNDING EVERY BOMB
+        identificateSurroundingWarningCell(sideGrid, bombArray)
     }
 
     surroundWarningGen(bombArray)
@@ -186,71 +138,49 @@ function startGame() {
         num = parseInt(clickedCell.innerHTML)
 
         // CHECK IF THE CELL IS WARNING, BOMB OR ELSE
+        
         if (bombArray.includes(num)) {
             clickedCell.style.backgroundColor = "red"
+            clickedCell.style.color = "black"
             clickedCell.innerHTML = "<i class='fa-solid fa-bomb'></i>"
             scoreEl.style.backgroundColor = "red"
             scoreEl.innerHTML = `YOU LOSE: SCORE(${score})`
-
+        
             if (score > highScore) {
                 highScore = parseInt(score)
                 highScoreEl.innerHTML = `HS: ${highScore}`
             }
             controller.abort()
-
+        
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 1) {
-
-            clickedCell.style.color = "yellow"
-            clickedCell.innerHTML = "1"
-            clickedCell.style.boxShadow = "0 0 10px inset yellow"
+            giveWarningCellStyle(1, "yellow", clickedCell)
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 2) {
-
-            clickedCell.style.color = "orange"
-            clickedCell.innerHTML = "2"
-            clickedCell.style.boxShadow = "0 0 12px inset orange"
+            giveWarningCellStyle(2, "orange", clickedCell)
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 3) {
-
-            clickedCell.style.color = "red"
-            clickedCell.innerHTML = "3"
-            clickedCell.style.boxShadow = "0 0 12px inset red"
+            giveWarningCellStyle(3, "red", clickedCell)
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 4) {
-
-            clickedCell.style.color = "purple"
-            clickedCell.innerHTML = "4"
-            clickedCell.style.boxShadow = "0 0 15px inset purple"
+            giveWarningCellStyle(4, "rgb(194, 0, 253)", clickedCell)
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 5) {
-
-            clickedCell.style.color = "purple"
-            clickedCell.innerHTML = "5"
-            clickedCell.style.boxShadow = "0 0 15px inset purple"
+            giveWarningCellStyle(5, "rgb(194, 0, 253)", clickedCell)
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 6) {
-
-            clickedCell.style.color = "purple"
-            clickedCell.innerHTML = "6"
-            clickedCell.style.boxShadow = "0 0 15px inset purple"
+            giveWarningCellStyle(6, "rgb(194, 0, 253)", clickedCell)
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 7) {
-
-            clickedCell.style.color = "purple"
-            clickedCell.innerHTML = "7"
-            clickedCell.style.boxShadow = "0 0 15px inset purple"
+            giveWarningCellStyle(7, "rgb(194, 0, 253)", clickedCell)
             addScore()
         } else if (warningArray.includes(num) && countInArray(warningArray, num) === 8) {
-
-            clickedCell.style.color = "purple"
-            clickedCell.innerHTML = "8"
-            clickedCell.style.boxShadow = "0 0 15px inset purple"
+            giveWarningCellStyle(8, "rgb(194, 0, 253)", clickedCell)
             addScore()
         } else {
-            clickedCell.style.backgroundColor = "lightblue"
-            clickedCell.style.color = "lightblue"
+            clickedCell.classList.add("free-cell")
             addScore()
         }
+        
 
         let winScore = sideGrid**2 - sideGrid*1.5
 
@@ -356,4 +286,60 @@ function setWindowGridWidth(sideGrid) {
     } else {
         gridEl.style.maxWidth = "1440px"
     }
+}
+
+// IDENTIFICATE WARNING CELL FUNC
+
+function identificateSurroundingWarningCell(sideGrid, bombArray) {
+
+    for (i = 0; i < bombArray.length; i++) {
+
+        let cellNorth = parseInt(bombArray[i] - sideGrid )
+        let cellNorthEast = parseInt(bombArray[i] - (sideGrid - 1) )
+        let cellEast = parseInt(bombArray[i] + 1 )
+        let cellSouthEast = parseInt(bombArray[i] + (sideGrid + 1) )
+        let cellSouth = parseInt(bombArray[i] + sideGrid )
+        let cellSouthWest = parseInt(bombArray[i] + (sideGrid - 1) )
+        let cellWest = parseInt(bombArray[i] - 1 )
+        let cellNorthWest = parseInt(bombArray[i] - (sideGrid + 1) )
+
+        // CHECK IF WARNING GENERATED CELL IS out of EDGES
+
+        if (edgedNorthCells.includes(bombArray[i]) === false) {
+            warningArray.push(cellNorth)
+        }
+        if (edgedNorthCells.includes(bombArray[i]) === false &&
+            edgedEastCells.includes(bombArray[i]) === false) {
+            warningArray.push(cellNorthEast)
+        }
+        if (edgedEastCells.includes(bombArray[i]) === false) {
+            warningArray.push(cellEast)
+        }
+        if (edgedSouthCells.includes(bombArray[i]) === false &&
+            edgedEastCells.includes(bombArray[i]) === false) {
+            warningArray.push(cellSouthEast)
+        }
+        if (edgedSouthCells.includes(bombArray[i]) === false) {
+            warningArray.push(cellSouth)
+        }           
+        if (edgedSouthCells.includes(bombArray[i]) === false &&
+            edgedWestCells.includes(bombArray[i]) === false) {
+            warningArray.push(cellSouthWest)
+        }       
+        if (edgedWestCells.includes(bombArray[i]) === false) {
+            warningArray.push(cellWest)
+        }           
+        if (edgedNorthCells.includes(bombArray[i]) === false &&
+            edgedWestCells.includes(bombArray[i]) === false) {
+            warningArray.push(cellNorthWest)
+        }      
+    }
+}
+
+// WARNING CELL STYLE FUNCTION
+
+function giveWarningCellStyle(num, color, clickedCell) {
+    clickedCell.style.color = `${color}`
+    clickedCell.innerHTML = `${num}`
+    clickedCell.style.boxShadow = `0 0 15px inset ${color}`
 }

@@ -19,6 +19,7 @@ figure {
     justify-content: center;
     align-items: center;
     font-size: 40px;
+    color: rgba(0, 0, 0, 0)
 }
 
 .cell:hover {
@@ -120,4 +121,14 @@ figure {
 
 .you-won span {
     font-size: 18px;
+}
+
+.flagged {
+    background-image: url(../img/flag\ background.png);
+    background-size: contain;
+}
+
+.free-cell {
+    background-color: aqua;
+    box-shadow: 0 0 10px inset blue;
 }
